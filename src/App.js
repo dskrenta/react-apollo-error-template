@@ -1,49 +1,63 @@
 import React, { Component } from 'react';
 import { gql, graphql } from 'react-apollo';
 
-import AddPerson from './AddPerson';
+import Feed from './Feed';
+import AddPost from './AddPost';
 
 class App extends Component {
   render() {
-    const { data: { loading, people } } = this.props;
     return (
       <main>
-        <header>
-          <h1>Apollo Client Error Template</h1>
-          <p>
-            This is a template that you can use to demonstrate an error in Apollo Client.
-            Edit the source code and watch your browser window reload with the changes.
-          </p>
-          <p>
-            The code which renders this component lives in <code>./src/App.js</code>.
-          </p>
-          <p>
-            The GraphQL schema is in <code>./src/graphql/schema</code>.
-            Currently the schema just serves a list of people with names and ids.
-          </p>
-        </header>
-        {loading ? (
-          <p>Loading…</p>
-        ) : (
-          <ul>
-            {people.map(person => (
-              <li key={person.id}>
-                {person.name}
-              </li>
-            ))}
-            <AddPerson />
-          </ul>
-        )}
+        <Feed />
+        <AddPost />
       </main>
     );
   }
 }
 
-export default graphql(
-  gql`{
+/*
+const AddPersonMutation = gql`
+  mutation($name: String!) {
+    addPerson(name: $name) {
+      id
+      name
+    }
+  }
+`;
+
+const PeopleQuery = gql`
+  {
     people {
       id
       name
     }
-  }`,
-)(App)
+  }
+`;
+
+export default graphql(AddPersonMutation, {
+  props({ mutate }) {
+    return {
+      addPerson(postText) {
+        return mutate({
+          variables: {
+            name: 'Jane'
+          },
+          update(proxy, { data: { addPerson } }) {
+            console.log(addPerson);
+            const data = proxy.readQuery({
+              query: PeopleQuery
+            });
+            data.people.push(addPerson);
+            proxy.writeQuery({
+              query: PeopleQuery,
+              data
+            });
+          }
+        });
+      }
+    }
+  }
+})(App);
+*/
+
+export default App;
