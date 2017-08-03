@@ -6,6 +6,7 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "cat-names": "^1.0.2",
     "graphql": "^0.9.2",
     "react": "^15.4.2",
     "react-apollo": "1.2.0",

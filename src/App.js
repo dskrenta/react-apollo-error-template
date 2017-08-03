@@ -6,58 +6,14 @@ import AddPost from './AddPost';
 
 class App extends Component {
   render() {
+    const { addPost } = this.props;
     return (
       <main>
-        <Feed />
         <AddPost />
+        <Feed />
       </main>
     );
   }
 }
-
-/*
-const AddPersonMutation = gql`
-  mutation($name: String!) {
-    addPerson(name: $name) {
-      id
-      name
-    }
-  }
-`;
-
-const PeopleQuery = gql`
-  {
-    people {
-      id
-      name
-    }
-  }
-`;
-
-export default graphql(AddPersonMutation, {
-  props({ mutate }) {
-    return {
-      addPerson(postText) {
-        return mutate({
-          variables: {
-            name: 'Jane'
-          },
-          update(proxy, { data: { addPerson } }) {
-            console.log(addPerson);
-            const data = proxy.readQuery({
-              query: PeopleQuery
-            });
-            data.people.push(addPerson);
-            proxy.writeQuery({
-              query: PeopleQuery,
-              data
-            });
-          }
-        });
-      }
-    }
-  }
-})(App);
-*/
 
 export default App;

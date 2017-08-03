@@ -9,7 +9,7 @@ import App from './App';
 // const client = new ApolloClient({ networkInterface });
 
 const networkInterface = createNetworkInterface({
-    uri: 'https://api.act.today/graphql'
+  uri: 'https://api.act.today/graphql'
 });
 
 const client = new ApolloClient({ networkInterface });

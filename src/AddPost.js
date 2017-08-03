@@ -1,5 +1,6 @@
 import React from 'react';
 import { gql, graphql } from 'react-apollo';
+import catNames from 'cat-names';
 
 const AddPost = ({ addPost }) => (
   <button onClick={addPost}>Add Post</button>
@@ -35,7 +36,7 @@ export default graphql(AddPostMutation, {
       addPost() {
         return mutate({
           variables: {
-            text: 'Sample post.'
+            text: catNames.random()
           },
           update(proxy, { data: { add_post } }) {
             const data = proxy.readQuery({
